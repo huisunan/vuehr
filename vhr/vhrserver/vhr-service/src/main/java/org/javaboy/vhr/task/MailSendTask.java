@@ -1,3 +1,4 @@
+/*
 package org.javaboy.vhr.task;
 
 import org.javaboy.vhr.model.Employee;
@@ -39,3 +40,4 @@ public class MailSendTask {
         });
     }
 }
+*/

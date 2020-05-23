@@ -7,9 +7,41 @@ public class Employeeremove {
 
     private Integer eid;
 
+    private String name;
+
     private Integer afterdepid;
 
+    private String depName;
+
     private Integer afterjobid;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDepName() {
+        return depName;
+    }
+
+    public void setDepName(String depName) {
+        this.depName = depName;
+    }
+
+
+
+    private String jobName;
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
 
     private Date removedate;
 

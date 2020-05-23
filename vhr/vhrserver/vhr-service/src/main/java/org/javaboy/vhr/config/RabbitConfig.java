@@ -1,15 +1,11 @@
+/*
 package org.javaboy.vhr.config;
 
 import org.javaboy.vhr.model.MailConstants;
 import org.javaboy.vhr.service.MailSendLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,3 +52,4 @@ public class RabbitConfig {
     }
 
 }
+*/

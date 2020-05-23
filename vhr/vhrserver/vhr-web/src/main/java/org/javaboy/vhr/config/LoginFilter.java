@@ -36,8 +36,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 loginData = new ObjectMapper().readValue(request.getInputStream(), Map.class);
             } catch (IOException e) {
             }finally {
-                String code = loginData.get("code");
-                checkCode(response, code, verify_code);
+              /*  String code = loginData.get("code");
+                checkCode(response, code, verify_code);*/
             }
             String username = loginData.get(getUsernameParameter());
             String password = loginData.get(getPasswordParameter());

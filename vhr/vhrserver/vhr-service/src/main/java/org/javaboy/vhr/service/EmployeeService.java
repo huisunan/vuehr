@@ -7,8 +7,6 @@ import org.javaboy.vhr.model.MailSendLog;
 import org.javaboy.vhr.model.RespPageBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.connection.CorrelationData;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +29,8 @@ import java.util.UUID;
 public class EmployeeService {
     @Autowired
     EmployeeMapper employeeMapper;
-    @Autowired
-    RabbitTemplate rabbitTemplate;
+   /* @Autowired
+    RabbitTemplate rabbitTemplate;*/
     @Autowired
     MailSendLogService mailSendLogService;
     public final static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
@@ -70,7 +68,7 @@ public class EmployeeService {
             mailSendLog.setEmpId(emp.getId());
             mailSendLog.setTryTime(new Date(System.currentTimeMillis() + 1000 * 60 * MailConstants.MSG_TIMEOUT));
             mailSendLogService.insert(mailSendLog);
-            rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME, MailConstants.MAIL_ROUTING_KEY_NAME, emp, new CorrelationData(msgId));
+//            rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME, MailConstants.MAIL_ROUTING_KEY_NAME, emp, new CorrelationData(msgId));
         }
         return result;
     }

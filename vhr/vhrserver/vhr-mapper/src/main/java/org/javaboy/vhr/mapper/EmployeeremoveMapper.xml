@@ -9,10 +9,27 @@
     <result column="removeDate" property="removedate" jdbcType="DATE" />
     <result column="reason" property="reason" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="depName" property="depName" jdbcType="VARCHAR"/>
+    <result column="jobName" property="jobName" jdbcType="VARCHAR"/>
+
   </resultMap>
   <sql id="Base_Column_List" >
     id, eid, afterDepId, afterJobId, removeDate, reason, remark
   </sql>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select a.*,b.name name,c.name depName,d.name jobName from employeeremove a
+    left join employee b on b.id = a.eid
+    left join department c on c.id = a.afterDepId
+    left join position d on d.id = a.afterJobId
+    <if test="keyword!=null and keyword != ''">
+      <where>
+        b.name = #{keyword}
+      </where>
+    </if>
+  </select>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
