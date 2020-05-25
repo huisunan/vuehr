@@ -1,5 +1,7 @@
 package org.javaboy.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Employeeec {
@@ -7,6 +9,7 @@ public class Employeeec {
 
     private Integer eid;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ecdate;
 
     private String ecreason;
@@ -16,6 +19,16 @@ public class Employeeec {
     private Integer ectype;
 
     private String remark;
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

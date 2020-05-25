@@ -1,5 +1,6 @@
 package org.javaboy.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +11,7 @@ public class AdjustSalary {
 
     private Integer eid;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date asdate;
 
     private Integer beforesalary;
@@ -19,6 +21,16 @@ public class AdjustSalary {
     private String reason;
 
     private String remark;
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

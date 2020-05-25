@@ -1,10 +1,13 @@
 package org.javaboy.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class OpLog {
     private Integer id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date adddate;
 
     private String operate;

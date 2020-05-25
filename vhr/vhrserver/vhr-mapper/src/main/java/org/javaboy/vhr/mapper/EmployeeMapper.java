@@ -1,6 +1,7 @@
 package org.javaboy.vhr.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.javaboy.vhr.model.Employee;
 
 import java.util.Date;
@@ -32,4 +33,7 @@ public interface EmployeeMapper {
     List<Employee> getEmployeeByPageWithSalary(@Param("page") Integer page, @Param("size") Integer size);
 
     Integer updateEmployeeSalaryById(@Param("eid") Integer eid, @Param("sid") Integer sid);
+
+    @Select("select name,id from employee where name like '%${query}%' or id like '%${query}%'")
+    List<Employee> getEmployeeByKeyword(String query);
 }

@@ -82,4 +82,16 @@ public class HrService implements UserDetailsService {
     public Integer updateUserface(String url, Integer id) {
         return hrMapper.updateUserface(url, id);
     }
+
+    public Integer add(Hr hr) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePass = encoder.encode(hr.getPassword());
+        hr.setPassword(encodePass);
+        return hrMapper.insert(hr);
+    }
+
+    public boolean exists(String username) {
+        int count = hrMapper.selectUserName(username);
+        return count > 0;
+    }
 }

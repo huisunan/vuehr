@@ -31,6 +31,16 @@ public class HrController {
         return hrService.getAllHrs(keywords);
     }
 
+    @PostMapping("add")
+    public RespBean add(@RequestBody Hr hr){
+        if (hrService.exists(hr.getUsername())){
+                return RespBean.error("用户已经存在");
+        }
+        hrService.add(hr);
+        return RespBean.ok("添加成功");
+    }
+
+
     @PutMapping("/")
     public RespBean updateHr(@RequestBody Hr hr) {
         if (hrService.updateHr(hr) == 1) {

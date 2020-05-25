@@ -9,6 +9,7 @@
     <result column="afterSalary" property="aftersalary" jdbcType="INTEGER" />
     <result column="reason" property="reason" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, eid, asDate, beforeSalary, afterSalary, reason, remark
@@ -114,4 +115,14 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectPage" resultMap="BaseResultMap">
+    select a.*,b.name name from adjustsalary a
+    left join employee b on b.id = a.eid
+    <if test="keyword!=null and keyword != ''">
+      <where>
+        b.name = #{keyword}
+      </where>
+    </if>
+  </select>
 </mapper>

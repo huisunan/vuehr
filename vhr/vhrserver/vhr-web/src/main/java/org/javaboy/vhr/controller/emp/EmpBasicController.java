@@ -112,4 +112,9 @@ public class EmpBasicController {
         }
         return RespBean.error("上传失败");
     }
+
+    @GetMapping("/keyword")
+    public List<Employee> keyword(String query){
+        return employeeService.keyword(query);
+    }
 }

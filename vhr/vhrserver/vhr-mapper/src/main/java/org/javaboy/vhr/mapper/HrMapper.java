@@ -1,6 +1,7 @@
 package org.javaboy.vhr.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.javaboy.vhr.model.Hr;
 import org.javaboy.vhr.model.Role;
 
@@ -30,4 +31,7 @@ public interface HrMapper {
     Integer updatePasswd(@Param("hrid") Integer hrid, @Param("encodePass") String encodePass);
 
     Integer updateUserface(@Param("url") String url, @Param("id") Integer id);
+
+    @Select("select count(1) from hr where username = #{value}")
+    int selectUserName(String username);
 }

@@ -201,4 +201,11 @@
       name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="selectByEid" parameterType="int" resultMap="BaseResultMap">
+        select basicSalary from salary
+        where id in(
+            select sid from empsalary
+            where eid = #{eid}
+        )
+    </select>
 </mapper>

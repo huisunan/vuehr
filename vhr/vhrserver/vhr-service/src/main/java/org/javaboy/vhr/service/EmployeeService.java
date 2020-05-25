@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -106,5 +108,12 @@ public class EmployeeService {
 
     public Employee getEmployeeById(Integer empId) {
         return employeeMapper.getEmployeeById(empId);
+    }
+
+    public List<Employee> keyword(String query) {
+        if(StringUtils.isEmpty(query)){
+            return new ArrayList<>();
+        }
+        return employeeMapper.getEmployeeByKeyword(query);
     }
 }

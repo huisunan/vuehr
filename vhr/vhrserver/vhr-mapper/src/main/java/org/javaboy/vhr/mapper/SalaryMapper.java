@@ -1,5 +1,6 @@
 package org.javaboy.vhr.mapper;
 
+import org.apache.ibatis.annotations.Select;
 import org.javaboy.vhr.model.Salary;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface SalaryMapper {
     int updateByPrimaryKey(Salary record);
 
     List<Salary> getAllSalaries();
+
+    Salary selectByEid(Integer eid);
 }
