@@ -22,18 +22,31 @@
 
                 </el-table-column>
                 <el-table-column
-                        prop="depName"
-                        label="部门名称">
+                        prop="ecdate"
+                        label="奖罚日期">
 
                 </el-table-column>
                 <el-table-column
-                        label="职位名称"
-                        prop="jobName">
+                        label="奖罚原因"
+                        prop="ecreason">
 
                 </el-table-column>
                 <el-table-column
-                        label="原因"
-                        prop="reason">
+                        label="奖罚分"
+                        prop="ecpoint">
+
+                </el-table-column>
+                <el-table-column
+                        label="类型">
+                    <template slot-scope="{row}">
+                        <el-tag>
+                            {{row.ectype === '1'?'罚':'奖'}}
+                        </el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="备注"
+                        prop="remark">
 
                 </el-table-column>
             </el-table>
@@ -48,17 +61,21 @@
                     :total="total">
             </el-pagination>
         </div>
+        <per-ec-dialog ref="dialog" @update="getList"/>
     </div>
 </template>
 
 <script>
+    import PerEcDialog from "./components/PerEcDialog";
+    import {postRequest} from "../../utils/api";
     export default {
         name: "PerEc",
+        components: {PerEcDialog},
         data() {
             return {
                 search: {
-                    size: 1,
-                    page: 10,
+                    size: 10,
+                    page: 1,
                     keyword: null
                 },
                 tableData: [],
@@ -69,19 +86,19 @@
         },
         methods: {
             getList() {
-                postRequest('/personnel/move/list', {}).then(res => {
+                postRequest('/personnel/prize/list', this.search).then(res => {
                     this.tableData = res.data
                     this.total = res.total
                 })
+            },
+            sizeChange(currentSize) {
+                this.search.size = currentSize;
+                this.getList();
+            },
+            currentChange(currentPage) {
+                this.search.page = currentPage;
+                this.getList();
             }
-        },
-        sizeChange(currentSize) {
-            this.search.size = currentSize;
-            this.getList();
-        },
-        currentChange(currentPage) {
-            this.search.page = currentPage;
-            this.getList();
         }
     }
 </script>

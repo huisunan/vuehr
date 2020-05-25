@@ -3,15 +3,13 @@
             :visible.sync="visible"
             title="人员调动"
             @open="destroy = true"
-            @closed="destroy = false"
-    >
+            @closed="destroy = false">
         <el-form
                 :model="formData"
-                label-width="120px"
-        >
+                label-width="120px">
             <el-form-item
                     label="员工ID">
-                <el-input v-model:number="formData.eid"></el-input>
+                <emp-search v-model="formData.eid"></emp-search>
             </el-form-item>
             <el-form-item
                     label="部门ID">
@@ -42,25 +40,27 @@
             </el-form-item>
             <el-form-item
                     label="原因">
-                <el-input  type="textarea"
-                           :rows="2"
-                           placeholder="请输入内容"
-                           clearable v-model="formData.reason"></el-input>
+                <el-input type="textarea"
+                          :rows="2"
+                          placeholder="请输入内容"
+                          clearable v-model="formData.reason"></el-input>
             </el-form-item>
         </el-form>
 
         <span slot="footer" class="dialog-footer">
-    <el-button @click="visible = false">取 消</el-button>
-    <el-button type="primary" @click="add">确 定</el-button>
-  </span>
+            <el-button @click="visible = false">取 消</el-button>
+            <el-button type="primary" @click="add">确 定</el-button>
+        </span>
     </el-dialog>
 </template>
 
 <script>
     import {postRequest} from "../../../utils/api";
+    import EmpSearch from "../../../components/sys/EmpSearch";
 
     export default {
         name: "PerMvDialog",
+        components: {EmpSearch},
         data() {
             return {
                 visible: false,
@@ -78,15 +78,15 @@
                     label: 'name'
                 },
                 popVisible: false,
-                inputDepName:null,
+                inputDepName: null,
             }
-        },mounted() {
+        }, mounted() {
             this.initPositions();
             this.initDeps()
         },
-        methods:{
-            add(){
-                postRequest('/personnel/move/add',this.formData).then(res=>{
+        methods: {
+            add() {
+                postRequest('/personnel/move/add', this.formData).then(res => {
                     this.$emit('update')
                     this.visible = false
                 })
@@ -104,7 +104,7 @@
                         this.positions = resp;
                     }
                 })
-            },initDeps() {
+            }, initDeps() {
                 this.getRequest('/employee/basic/deps').then(resp => {
                     if (resp) {
                         this.allDeps = resp;

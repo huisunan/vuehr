@@ -62,8 +62,8 @@
         data() {
             return {
                 search: {
-                    size: 1,
-                    page: 10,
+                    size: 10,
+                    page: 1,
                     keyword: null
                 },
                 tableData: [],
@@ -74,19 +74,19 @@
         },
         methods: {
             getList() {
-                postRequest('/personnel/move/list', {}).then(res => {
+                postRequest('/personnel/move/list', this.search).then(res => {
                     this.tableData = res.data
                     this.total = res.total
                 })
+            },
+            sizeChange(currentSize) {
+                this.search.size = currentSize;
+                this.getList();
+            },
+            currentChange(currentPage) {
+                this.search.page = currentPage;
+                this.getList();
             }
-        },
-        sizeChange(currentSize) {
-            this.search.size = currentSize;
-            this.getList();
-        },
-        currentChange(currentPage) {
-            this.search.page = currentPage;
-            this.getList();
         }
     }
 </script>
