@@ -40,7 +40,7 @@
                         label="类型">
                     <template slot-scope="{row}">
                         <el-tag>
-                            {{row.ectype === '1'?'罚':'奖'}}
+                            {{row.ectype === 1 ?'奖':'罚'}}
                         </el-tag>
                     </template>
                 </el-table-column>
