@@ -5,8 +5,19 @@
 </template>
 
 <script>
+    import {getRequest} from "../../utils/api";
+
     export default {
-        name: "StaAll"
+        name: "StaAll",
+        created() {
+            this.getSex()
+        }, methods: {
+            getSex() {
+                getRequest('/chart/base/sex').then(res => {
+
+                })
+            }
+        }
     }
 </script>
 

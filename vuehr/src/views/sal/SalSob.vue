@@ -41,13 +41,14 @@
                 <el-steps direction="vertical" :active="activeItemIndex">
                     <el-step :title="itemName" v-for="(itemName,index) in salaryItemName" :key="index"></el-step>
                 </el-steps>
-                <el-input v-model="salary[title]" :placeholder="'请输入'+salaryItemName[index]+'...'"
-                          v-for="(value,title,index) in salary"
-                          :key="index" v-show="activeItemIndex==index" style="width: 200px"></el-input>
+                <el-input v-model="salary[title]" :placeholder="'请输入'+salaryItemName[index2]+'...'"
+                          v-for="(value,title,index2) in salary"
+                          :key="index2" v-show="activeItemIndex===index2" style="width: 200px"></el-input>
+                <!--<el-input v-model="salary.name" v-show="activeItemIndex===10" style="width: 200px"></el-input>-->
             </div>
             <span slot="footer" class="dialog-footer">
-    <el-button @click="preStep">{{activeItemIndex==10?'取消':'上一步'}}</el-button>
-    <el-button type="primary" @click="nextStep">{{activeItemIndex==10?'完成':'下一步'}}</el-button>
+    <el-button @click="preStep">{{activeItemIndex===salaryItemName.length?'取消':'上一步'}}</el-button>
+    <el-button type="primary" @click="nextStep">{{activeItemIndex===salaryItemName.length?'完成':'下一步'}}</el-button>
   </span>
         </el-dialog>
     </div>
@@ -76,21 +77,22 @@
                     '账套名称'
                 ],
                 salary: {
-                    basicSalary: 0,
-                    trafficSalary: 0,
-                    lunchSalary: 0,
-                    bonus: 0,
-                    pensionPer: 0,
-                    pensionBase: 0,
-                    medicalPer: 0,
-                    medicalBase: 0,
-                    accumulationFundPer: 0,
-                    accumulationFundBase: 0,
-                    name: ''
+                    basicSalary: null,
+                    trafficSalary: null,
+                    lunchSalary: null,
+                    bonus: null,
+                    pensionPer: null,
+                    pensionBase: null,
+                    medicalPer: null,
+                    medicalBase: null,
+                    accumulationFundPer: null,
+                    accumulationFundBase: null,
+                    name: null,
                 }
             }
         },
         mounted() {
+
             this.initSalaries();
         },
         methods: {
@@ -125,9 +127,9 @@
                 })
             },
             preStep() {
-                if (this.activeItemIndex == 0) {
+                if (this.activeItemIndex === 0) {
                     return;
-                } else if (this.activeItemIndex == 10) {
+                } else if (this.activeItemIndex ===  this.salaryItemName.length) {
                     //关闭对话框
                     this.dialogVisible = false;
                     return;
@@ -135,7 +137,7 @@
                 this.activeItemIndex--;
             },
             nextStep() {
-                if (this.activeItemIndex == 10) {
+                if (this.activeItemIndex === this.salaryItemName.length) {
                     if (this.salary.id) {
                         this.putRequest("/salary/sob/", this.salary).then(resp=>{
                             if (resp) {

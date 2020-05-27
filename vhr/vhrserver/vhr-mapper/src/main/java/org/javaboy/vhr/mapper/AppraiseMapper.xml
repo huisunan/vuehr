@@ -103,4 +103,13 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select a.*,b.name name from appraise a
+    left join employee b on b.id = a.eid
+    <if test="keyword!=null and keyword != ''">
+      <where>
+        b.name = #{keyword}
+      </where>
+    </if>
+  </select>
 </mapper>

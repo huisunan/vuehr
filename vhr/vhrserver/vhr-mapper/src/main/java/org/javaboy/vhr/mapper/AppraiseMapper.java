@@ -1,6 +1,9 @@
 package org.javaboy.vhr.mapper;
 
 import org.javaboy.vhr.model.Appraise;
+import org.javaboy.vhr.model.Employeeremove;
+
+import java.util.List;
 
 public interface AppraiseMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface AppraiseMapper {
     int updateByPrimaryKeySelective(Appraise record);
 
     int updateByPrimaryKey(Appraise record);
+
+    List<Employeeremove> selectPage(String keyword);
 }

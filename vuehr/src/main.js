@@ -47,12 +47,14 @@ import {
     DatePicker,
     RadioGroup,
     CollapseItem,
-    Switch
+    Switch,
+    Step
 } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.prototype.$ELEMENT = {size: 'small', zIndex: 3000};
 Vue.use(Switch);
+Vue.use(Step);
 Vue.use(CollapseItem);
 Vue.use(Radio);
 Vue.use(RadioGroup);
