@@ -13,9 +13,5 @@
     select sum(ecPoint) value,b.name from employeeec a left join employee b on b.id = a.eid group by eid;
   </select>
 
-  <select id="employee" resultType="map">
-    select
-  </select>
-  
-  <select id=""
+
 </mapper>
