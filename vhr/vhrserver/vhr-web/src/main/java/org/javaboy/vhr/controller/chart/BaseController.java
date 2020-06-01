@@ -20,4 +20,21 @@ public class BaseController {
         List<Map<String,Object>>  res =chartMapper.sex();
         return res;
     }
+
+    @GetMapping("age")
+    public Object age(){
+        List<Map<String,Object>>  res =chartMapper.age();
+        return res;
+    }
+
+    @GetMapping("point")
+    public Object point(){
+        List<Map<String,Object>>  res =chartMapper.point();
+        return res;
+    }
+
+    @GetMapping("employee")
+    public Object employee(){
+        return chartMapper.employee();
+    }
 }

@@ -4,4 +4,18 @@
   <select id="sex" resultType="java.util.Map">
     select gender,count(gender) sum from employee group by gender
   </select>
+
+  <select id="age" resultType="map">
+    select name,sum(name) value from (select (year(now()) - year(birthday)) name from employee) t group by name;
+  </select>
+
+  <select id="point" resultType="map">
+    select sum(ecPoint) value,b.name from employeeec a left join employee b on b.id = a.eid group by eid;
+  </select>
+
+  <select id="employee" resultType="map">
+    select
+  </select>
+  
+  <select id=""
 </mapper>
