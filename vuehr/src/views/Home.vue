@@ -22,7 +22,7 @@
                     <el-menu router unique-opened>
                         <el-submenu :index="index+''" v-for="(item,index) in routes" v-if="!item.hidden" :key="index">
                             <template slot="title">
-                                <i style="color: #409eff;margin-right: 5px" :class="item.iconCls"></i>
+                                <i style="color: #F79709;margin-right: 5px" :class="item.iconCls"></i>
                                 <span>{{item.name}}</span>
                             </template>
                             <el-menu-item :index="child.path" v-for="(child,indexj) in item.children" :key="indexj">
@@ -100,12 +100,12 @@
         text-align: center;
         font-size: 30px;
         font-family: 华文行楷;
-        color: #409eff;
+        color: #F79709;
         padding-top: 50px;
     }
 
     .homeHeader {
-        background-color: #409eff;
+        background-color: #F79709;
         display: flex;
         align-items: center;
         justify-content: space-between;

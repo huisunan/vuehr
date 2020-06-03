@@ -3,10 +3,10 @@
         <div style="margin-top: 10px;display: flex;justify-content: center">
             <el-input v-model="keywords" placeholder="通过用户名搜索用户..." prefix-icon="el-icon-search"
                       style="width: 400px;margin-right: 10px" @keydown.enter.native="doSearch"></el-input>
-            <el-button icon="el-icon-search" type="primary" @click="doSearch">搜索</el-button>
+            <el-button icon="el-icon-search" type="warning" @click="doSearch">搜索</el-button>
         </div>
         <div class="hr-container">
-            <el-card class="hr-card" v-for="(hr,index) in hrs" :key="index">
+            <!--<el-card class="hr-card" v-for="(hr,index) in hrs" :key="index">
                 <div slot="header" class="clearfix">
                     <span>{{hr.name}}</span>
                     <el-button style="float: right; padding: 3px 0;color: #e30007;" type="text"
@@ -56,7 +56,60 @@
                         <div>备注：{{hr.remark}}</div>
                     </div>
                 </div>
-            </el-card>
+            </el-card>-->
+
+            <el-collapse v-model="activeName" accordion >
+                <el-collapse-item v-for="(hr,index) in hrs" :key="index" :title="hr.name" :name="index">
+                    <div>
+                        <el-button style="margin-left: 650px; padding: 3px 0;color: #e30007;" type="text" icon="el-icon-delete" @click="deleteHr(hr)"></el-button>
+                    </div>
+                    <div style="display: flex; justify-content: space-around; align-items: center; margin-left: 100px">
+                        <div class="img-container">
+                            <img :src="hr.userface" :alt="hr.name" :title="hr.name" class="userface-img">
+                        </div>
+                        <div class="userinfo-container">
+                            <div>用户名：{{hr.name}}</div>
+                            <div>手机号码：{{hr.phone}}</div>
+                            <div>电话号码：{{hr.telephone}}</div>
+                            <div>地址：{{hr.address}}</div>
+                            <div>用户状态：
+                                <el-switch
+                                        v-model="hr.enabled"
+                                        active-text="启用"
+                                        @change="enabledChange(hr)"
+                                        active-color="#13ce66"
+                                        inactive-color="#ff4949"
+                                        inactive-text="禁用">
+                                </el-switch>
+                            </div>
+                            <div>用户角色：
+                                <el-tag type="success" style="margin-right: 4px" v-for="(role,indexj) in hr.roles"
+                                        :key="indexj">{{role.nameZh}}
+                                </el-tag>
+                                <el-popover
+                                        placement="right"
+                                        title="角色列表"
+                                        @show="showPop(hr)"
+                                        @hide="hidePop(hr)"
+                                        width="200"
+                                        trigger="click">
+                                    <el-select v-model="selectedRoles" multiple placeholder="请选择">
+                                        <el-option
+                                                v-for="(r,indexk) in allroles"
+                                                :key="indexk"
+                                                :label="r.nameZh"
+                                                :value="r.id">
+                                        </el-option>
+                                    </el-select>
+                                    <el-button slot="reference" icon="el-icon-more" type="text"></el-button>
+                                </el-popover>
+                            </div>
+                            <div>备注：{{hr.remark}}</div>
+                        </div>
+                    </div>
+                </el-collapse-item>
+
+            </el-collapse>
 
         </div>
     </div>
@@ -70,7 +123,8 @@
                 keywords: '',
                 hrs: [],
                 selectedRoles: [],
-                allroles: []
+                allroles: [],
+                activeName: 0
             }
         },
         mounted() {
@@ -168,35 +222,38 @@
 
 <style>
     .userinfo-container div {
-        font-size: 12px;
-        color: #409eff;
+        font-size: 14px;
+        color: #666;
     }
 
     .userinfo-container {
         margin-top: 20px;
+        width: calc(100% - 250px);
     }
 
     .img-container {
-        width: 100%;
+        width: 130px;
+        height: 130px;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .userface-img {
-        width: 72px;
-        height: 72px;
-        border-radius: 72px;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
     }
 
     .hr-container {
         margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        /*justify-content: space-around;*/
     }
 
     .hr-card {
-        width: 350px;
+        width: 100%;
         margin-bottom: 20px;
     }
 </style>

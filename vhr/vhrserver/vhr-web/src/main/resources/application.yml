@@ -3,12 +3,11 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: root
-    url: jdbc:mysql://139.199.106.104:3306/vhr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql:///vhr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
   redis:
     host: 127.0.0.1
     database: 0
     port: 6379
-    password: Founder123
   cache:
     cache-names: menus_cache
 server:

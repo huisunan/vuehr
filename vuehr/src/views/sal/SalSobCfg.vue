@@ -83,7 +83,7 @@
                                     </el-option>
                                 </el-select>
                             </div>
-                            <el-button slot="reference" type="danger">修改工资账套</el-button>
+                            <el-button slot="reference" type="warning">修改工资账套</el-button>
                         </el-popover>
                     </template>
                 </el-table-column>

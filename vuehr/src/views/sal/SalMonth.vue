@@ -5,12 +5,12 @@
                 <el-input placeholder="请输入员工名进行搜索，可以直接回车搜索..." prefix-icon="el-icon-search"
                           clearable
                           style="width: 350px;margin-right: 10px" v-model="search.keyword"></el-input>
-                <el-button icon="el-icon-search" type="primary">
+                <el-button icon="el-icon-search" type="warning">
                     搜索
                 </el-button>
             </div>
             <div>
-                <el-button type="primary" @click="$refs.dialog.visible = true">月末考评</el-button>
+                <el-button type="warning" @click="$refs.dialog.visible = true">月末考评</el-button>
             </div>
         </div>
         <div>

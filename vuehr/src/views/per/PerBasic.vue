@@ -8,10 +8,10 @@
                               @clear="initEmps"
                               style="width: 350px;margin-right: 10px" v-model="keyword"
                               @keydown.enter.native="initEmps" :disabled="showAdvanceSearchView"></el-input>
-                    <el-button icon="el-icon-search" type="primary" @click="initEmps" :disabled="showAdvanceSearchView">
+                    <el-button icon="el-icon-search" type="warning" @click="initEmps" :disabled="showAdvanceSearchView">
                         搜索
                     </el-button>
-                    <el-button type="primary" @click="showAdvanceSearchView = !showAdvanceSearchView">
+                    <el-button type="warning" @click="showAdvanceSearchView = !showAdvanceSearchView">
                         <i :class="showAdvanceSearchView?'fa fa-angle-double-up':'fa fa-angle-double-down'"
                            aria-hidden="true"></i>
                         高级搜索
@@ -33,7 +33,7 @@
                     <el-button type="success" @click="exportData" icon="el-icon-download">
                         导出数据
                     </el-button>
-                    <el-button type="primary" icon="el-icon-plus" @click="showAddEmpView">
+                    <el-button type="warning" icon="el-icon-plus" @click="showAddEmpView">
                         添加用户
                     </el-button>
                 </div>
@@ -147,13 +147,101 @@
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
                     style="width: 100%">
+                <el-table-column type="expand">
+                    <template slot-scope="{row}">
+                        <el-form label-position="left" class="demo-table-expand">
+                            <el-form-item
+                                    width="100"
+                                    align="left"
+                                    label="电话号码">
+                                <span>{{row.phone}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="220"
+                                    align="left"
+                                    label="联系地址">
+                                <span>{{row.address}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="100"
+                                    align="left"
+                                    label="所属部门">
+                                <span>{{row.department.name}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="100"
+                                    label="职位">
+                                <span>{{row.position.name}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="100"
+                                    label="职称">
+                                <span>{{row.jobLevel.name}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="100"
+                                    align="left"
+                                    label="聘用形式">
+                                <span>{{row.engageForm}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="80"
+                                    align="left"
+                                    label="最高学历">
+                                <span>{{row.tiptopDegree}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="150"
+                                    align="left"
+                                    label="专业">
+                                <span>{{row.specialty}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="150"
+                                    align="left"
+                                    label="毕业院校">
+                                <span>{{row.school}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="95"
+                                    align="left"
+                                    label="入职日期">
+                                <span>{{row.beginDate}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="95"
+                                    align="left"
+                                    label="转正日期">
+                                <span>{{row.conversionTime}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="95"
+                                    align="left"
+                                    label="合同起始日期">
+                                <span>{{row.beginContract}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="95"
+                                    align="left"
+                                    label="合同截止日期">
+                                <span>{{row.endContract}}</span>
+                            </el-form-item>
+                            <el-form-item
+                                    width="100"
+                                    align="left"
+                                    label="合同期限">
+                                    <el-tag>{{row.contractTerm}}</el-tag>
+                                    年
+                            </el-form-item>
+                        </el-form>
+                    </template>
+                </el-table-column>
                 <el-table-column
                         type="selection"
                         width="55">
                 </el-table-column>
                 <el-table-column
                         prop="name"
-                        fixed
                         align="left"
                         label="姓名"
                         width="90">
@@ -207,98 +295,16 @@
                         align="left"
                         label="电子邮件">
                 </el-table-column>
-                <el-table-column
-                        prop="phone"
-                        width="100"
-                        align="left"
-                        label="电话号码">
-                </el-table-column>
-                <el-table-column
-                        prop="address"
-                        width="220"
-                        align="left"
-                        label="联系地址">
-                </el-table-column>
-                <el-table-column
-                        prop="department.name"
-                        width="100"
-                        align="left"
-                        label="所属部门">
-                </el-table-column>
-                <el-table-column
-                        prop="position.name"
-                        width="100"
-                        label="职位">
-                </el-table-column>
-                <el-table-column
-                        prop="jobLevel.name"
-                        width="100"
-                        label="职称">
-                </el-table-column>
-                <el-table-column
-                        prop="engageForm"
-                        width="100"
-                        align="left"
-                        label="聘用形式">
-                </el-table-column>
-                <el-table-column
-                        prop="tiptopDegree"
-                        width="80"
-                        align="left"
-                        label="最高学历">
-                </el-table-column>
-                <el-table-column
-                        prop="specialty"
-                        width="150"
-                        align="left"
-                        label="专业">
-                </el-table-column>
-                <el-table-column
-                        prop="school"
-                        width="150"
-                        align="left"
-                        label="毕业院校">
-                </el-table-column>
-                <el-table-column
-                        prop="beginDate"
-                        width="95"
-                        align="left"
-                        label="入职日期">
-                </el-table-column>
-                <el-table-column
-                        prop="conversionTime"
-                        width="95"
-                        align="left"
-                        label="转正日期">
-                </el-table-column>
-                <el-table-column
-                        prop="beginContract"
-                        width="95"
-                        align="left"
-                        label="合同起始日期">
-                </el-table-column>
-                <el-table-column
-                        prop="endContract"
-                        width="95"
-                        align="left"
-                        label="合同截止日期">
-                </el-table-column>
-                <el-table-column
-                        width="100"
-                        align="left"
-                        label="合同期限">
-                    <template slot-scope="scope">
-                        <el-tag>{{scope.row.contractTerm}}</el-tag>
-                        年
-                    </template>
-                </el-table-column>
+
                 <el-table-column
                         fixed="right"
                         width="200"
                         label="操作">
                     <template slot-scope="scope">
-                        <el-button @click="showEditEmpView(scope.row)" style="padding: 3px" size="mini">编辑</el-button>
-                        <el-button style="padding: 3px" size="mini" type="primary">查看高级资料</el-button>
+                        <el-button type="primary" @click="showEditEmpView(scope.row)" style="padding: 3px" size="mini">
+                            编辑
+                        </el-button>
+                        <el-button style="padding: 3px" size="mini" type="warning">查看高级资料</el-button>
                         <el-button @click="deleteEmp(scope.row)" style="padding: 3px" size="mini" type="danger">删除
                         </el-button>
                     </template>
@@ -930,5 +936,17 @@
     {
         transform: translateX(10px);
         opacity: 0;
+    }
+    .demo-table-expand {
+        font-size: 0;
+    }
+    .demo-table-expand label {
+        width: 120px;
+        color: #99a9bf;
+    }
+    .demo-table-expand .el-form-item {
+        margin-right: 0;
+        margin-bottom: 0;
+        width: 50%;
     }
 </style>

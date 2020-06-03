@@ -1,8 +1,8 @@
 <template>
     <div>
         <div style="display: flex;justify-content: space-between">
-            <el-button icon="el-icon-plus" type="primary" @click="showAddSalaryView">添加工资账套</el-button>
-            <el-button icon="el-icon-refresh" type="success" @click="initSalaries"></el-button>
+            <el-button icon="el-icon-plus" type="warning" @click="showAddSalaryView">添加工资账套</el-button>
+            <el-button icon="el-icon-refresh" type="warning" @click="initSalaries"></el-button>
         </div>
         <div style="margin-top: 10px">
             <el-table :data="salaries" border stripe>
@@ -27,7 +27,7 @@
                 </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button @click="showEditSalaryView(scope.row)">编辑</el-button>
+                        <el-button @click="showEditSalaryView(scope.row)" type="warning">编辑</el-button>
                         <el-button type="danger" @click="deleteSalary(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
